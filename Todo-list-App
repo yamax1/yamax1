@@ -1,0 +1,49 @@
+def print_menu():
+    print("===== To-Do リスト =====")
+    print("1. タスクを追加する")
+    print("2. タスクを表示する")
+    print("3. タスクを削除する")
+    print("4. 終了する")
+
+def add_task(tasks):
+    task_name = input("新しいタスクを入力してください: ")
+    tasks.append(task_name)
+    print("タスクが追加されました！")
+
+def show_tasks(tasks):
+    if not tasks:
+        print("タスクはありません。")
+    else:
+        print("===== タスク一覧 =====")
+        for i, task in enumerate(tasks, 1):
+            print(f"{i}. {task}")
+
+def remove_task(tasks):
+    show_tasks(tasks)
+    task_num = int(input("削除するタスクの番号を入力してください: "))
+    if 1 <= task_num <= len(tasks):
+        deleted_task = tasks.pop(task_num - 1)
+        print(f"{deleted_task} を削除しました。")
+    else:
+        print("無効な番号です。")
+
+def main():
+    tasks = []
+    while True:
+        print_menu()
+        choice = input("選択肢を入力してください: ")
+
+        if choice == "1":
+            add_task(tasks)
+        elif choice == "2":
+            show_tasks(tasks)
+        elif choice == "3":
+            remove_task(tasks)
+        elif choice == "4":
+            print("アプリケーションを終了します。")
+            break
+        else:
+            print("無効な選択肢です。")
+
+if __name__ == "__main__":
+    main()
